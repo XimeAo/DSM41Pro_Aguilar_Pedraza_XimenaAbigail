@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\modelo;
+use App\Models\mark;
 use Illuminate\Http\Request;
 
 class ModelController extends Controller
@@ -13,7 +15,9 @@ class ModelController extends Controller
      */
     public function index()
     {
-        //
+        $modelos = modelo::all();
+        //return $groups;
+      return view('modelos.index', compact('modelos'));
     }
 
     /**
@@ -23,7 +27,8 @@ class ModelController extends Controller
      */
     public function create()
     {
-        //
+        $marks=mark::all();
+        return view('modelos.create',  compact('marks'));
     }
 
     /**
@@ -34,7 +39,12 @@ class ModelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $modelo = new modelo();
+        $modelo->model=$request->input('modelo');
+        $modelo->year=$request->input('year');
+        $modelo->marks_id=$request->input('marks');
+        $modelo->save();
+        return redirect ('/modelos')->with('message', 'El modelo se ha agregado correctamente');
     }
 
     /**
@@ -45,7 +55,8 @@ class ModelController extends Controller
      */
     public function show($id)
     {
-        //
+        $modelo = modelo::find($id);
+        return view('modelos.show',compact('modelo'));
     }
 
     /**

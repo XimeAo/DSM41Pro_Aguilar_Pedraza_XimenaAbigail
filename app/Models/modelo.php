@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class modelo extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'year',
+        'model',
+        'marks_id'
+        ];
 
     public function marks(){
         return $this->belongsTo(mark::class,'id');

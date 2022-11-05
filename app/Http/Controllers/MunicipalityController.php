@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\estate;
+use App\Models\municipality;
 use Illuminate\Http\Request;
 
 class MunicipalityController extends Controller
@@ -12,8 +14,10 @@ class MunicipalityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $municipalities=municipality::all();
+        //return $groups;
+      return view('municipalities.index', compact('municipalities'));
     }
 
     /**
@@ -23,7 +27,8 @@ class MunicipalityController extends Controller
      */
     public function create()
     {
-        //
+        $estates=estate::all();
+        return view('municipalities.create',  compact('estates'));
     }
 
     /**
@@ -34,7 +39,11 @@ class MunicipalityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $municipality = new municipality();
+        $municipality->municipality=$request->input('municipality');
+        $municipality->estates_id=$request->input('estates');
+        $municipality->save();
+        return redirect ('/municipalities')->with('message', 'El estado se ha agregado correctamente');
     }
 
     /**
@@ -45,7 +54,8 @@ class MunicipalityController extends Controller
      */
     public function show($id)
     {
-        //
+        $municipality = municipality::find($id);
+        return view('municipalities.show',compact('municipality'));
     }
 
     /**

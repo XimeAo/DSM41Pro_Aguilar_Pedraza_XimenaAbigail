@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('estates', function (Blueprint $table) {
             $table->increments('id');
             $table->string('estate');
-            
-            
             $table->timestamps();
         });
     }

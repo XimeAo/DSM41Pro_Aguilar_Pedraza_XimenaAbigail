@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\typeuser;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TypeuserController extends Controller
@@ -13,7 +15,9 @@ class TypeuserController extends Controller
      */
     public function index()
     {
-        //
+        $typeusers = typeuser::all();
+        //return $groups;
+      return view('typeusers.index', compact('typeusers'));
     }
 
     /**
@@ -23,7 +27,8 @@ class TypeuserController extends Controller
      */
     public function create()
     {
-        //
+        $users=User::all();
+        return view('typeusers.create',  compact('users'));
     }
 
     /**
@@ -34,7 +39,11 @@ class TypeuserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $typeuser = new typeuser();
+        $typeuser->type_user=$request->input('type_user');
+        $typeuser->users_id=$request->input('users');
+        $typeuser->save();
+        return redirect ('/typeusers')->with('message', 'El Tipo de usuario se ha agregado correctamente');
     }
 
     /**
@@ -45,7 +54,8 @@ class TypeuserController extends Controller
      */
     public function show($id)
     {
-        //
+        $typeuser = typeuser::find($id);
+        return view('typeusers.show',compact('typeuser'));
     }
 
     /**

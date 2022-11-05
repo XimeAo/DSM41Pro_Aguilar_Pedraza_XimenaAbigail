@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\mark;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -13,11 +14,15 @@ class markFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     * 
      */
+    protected $model=mark::class;
     public function definition()
     {
         return [
-            //
+            
+            'mark'=>fake()->sentence(),
+
         ];
     }
 }

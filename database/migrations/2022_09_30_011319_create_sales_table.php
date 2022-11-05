@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->foreign('users_id')->references('id')->on('users');
 
-            $table->dateTime('date_hour');
+            
             $table->float('subtotal');
             $table->float('iva');
             $table->float('total');

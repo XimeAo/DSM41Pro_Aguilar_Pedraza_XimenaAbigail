@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\sale;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -13,7 +15,9 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = sale::all();
+        //return $groups;
+      return view('sales.index', compact('sales'));
     }
 
     /**
@@ -23,7 +27,8 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $users=User::all();
+        return view('sales.create',  compact('users'));
     }
 
     /**
@@ -34,7 +39,15 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sale = new sale();
+        $sale->users_id=$request->input('users');
+        $sale->subtotal=$request->input('subtotal');
+        $sale->iva=$request->input('iva');
+        $sale->total=$request->input('total');
+        $sale->status=$request->input('status');
+        $sale->guide_number=$request->input('guide_number');
+        $sale->save();
+        return redirect ('/sales')->with('message', 'La venta se ha registrado correctamente');
     }
 
     /**
@@ -45,7 +58,8 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        //
+        $sale = sale::find($id);
+        return view('sales.show',compact('sale'));
     }
 
     /**

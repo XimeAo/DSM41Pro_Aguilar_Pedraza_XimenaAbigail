@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\estate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,12 @@ class estateFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model=estate::class;
     public function definition()
     {
         return [
-            //
+            
+            'estate'=>fake()->name(),
         ];
     }
 }

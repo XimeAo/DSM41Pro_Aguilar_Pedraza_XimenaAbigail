@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\estate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -22,18 +23,21 @@ class   UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' =>$this-> faker->name,
-            'phone' =>$this-> faker->phoneNumber(),
-            'email' =>$this-> faker->unique()->safeEmail(),
-            'location' =>$this-> faker->text(),
-            'street' =>$this-> faker->word,
-            'outdoor_number' =>$this-> faker->randomNumber(5,false),
-            'indoor_number' =>$this-> faker->randomNumber(5,false),
-            'postal_code' =>$this-> faker->randomNumber(5,false),
-            'between_streets' =>$this-> faker->text(),
-            'password' =>$this-> faker->text,
-            'type_user' =>$this-> faker->numberBetween(1,3),
-            'estates_id'=>$this->faker->randomNumber(),
+            //'id'=>fake()->numberBetween($int1=1,$int2=100000),
+            'name' =>fake()->name(),
+            'phone' =>fake()->phoneNumber(),
+            'email' =>fake()->unique()->safeEmail(),
+            'birthday' =>fake()->date(),
+            'sex' =>fake()->sentence(),
+            'location' =>fake()->sentence(),
+            'street' =>fake()->sentence(),
+            'outdoor_number' =>fake()->numberBetween($int1=1,$int2=100),
+            'indoor_number' =>fake()->numberBetween($int1=1,$int2=100),
+            'postal_code' =>fake()->numberBetween($int1=1,$int2=100),
+            'between_streets' =>fake()->sentence(),
+            'password' =>fake()->sentence(),
+            'estates_id'=>estate::all()->random()->id,
+
             
         ];
     }

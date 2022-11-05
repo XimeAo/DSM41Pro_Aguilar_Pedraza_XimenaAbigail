@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
+use App\Models\mark;
+use App\Models\modelo;
+use App\Models\product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +17,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = product::all();
+        //return $groups;
+      return view('products.index', compact('products'));
     }
 
     /**
@@ -23,7 +29,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $marks=mark::all();
+        $modelos=modelo::all();
+        $categories=category::all();
+        return view('products.create',  compact('marks','modelos','categories'));
+
     }
 
     /**
@@ -34,7 +44,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new product();
+        $product->product=$request->input('product');
+        $product->description=$request->input('description');
+        $product->price=$request->input('price');
+        $product->stock=$request->input('stock');
+        $product->marks_id=$request->input('marks');
+        $product->modelos_id=$request->input('modelos');
+        $product->categories_id=$request->input('categories');
+        $product->save();
+        return redirect ('/products')->with('message', 'El producto se ha agregado correctamente');
     }
 
     /**
@@ -45,7 +64,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = product::find($id);
+        return view('products.show',compact('product'));
     }
 
     /**

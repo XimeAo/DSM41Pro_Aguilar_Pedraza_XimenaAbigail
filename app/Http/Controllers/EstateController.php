@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\estate;
 use Illuminate\Http\Request;
 
 class EstateController extends Controller
@@ -13,7 +14,9 @@ class EstateController extends Controller
      */
     public function index()
     {
-        //
+        $estates = estate::all();
+        //return $groups;
+      return view('estates.index', compact('estates'));
     }
 
     /**
@@ -23,7 +26,7 @@ class EstateController extends Controller
      */
     public function create()
     {
-        //
+        return view('estates.create');
     }
 
     /**
@@ -34,7 +37,10 @@ class EstateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estate = new estate;
+        $estate->estate=$request->input('estate');
+        $estate->save();
+        return redirect ('/estates')->with('message', 'El estado se ha agrgado correctamente');
     }
 
     /**
@@ -45,7 +51,8 @@ class EstateController extends Controller
      */
     public function show($id)
     {
-        //
+        $estate = estate::find($id);
+        return view('estates.show',compact('estate'));
     }
 
     /**

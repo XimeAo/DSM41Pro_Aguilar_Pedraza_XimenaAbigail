@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\estate;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        //return $groups;
+      return view('users.index', compact('users'));
     }
 
     /**
@@ -23,7 +27,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $estates=estate::all();
+    
+        return view('users.create',  compact('estates'));
+
     }
 
     /**
@@ -34,7 +41,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name=$request->input('name');
+        $user->phone=$request->input('phone');
+        $user->email=$request->input('email');
+        $user->password=$request->input('password');
+        $user->birthday=$request->input('birthday');
+        $user->sex=$request->input('sex');
+        $user->location=$request->input('location');
+        $user->street=$request->input('street');
+        $user->outdoor_number=$request->input('outdoor_number');
+        $user->indoor_number=$request->input('indoor_number');
+        $user->postal_code=$request->input('postal_code');
+        $user->between_streets=$request->input('between_streets');
+        $user->estates_id=$request->input('estates');
+        $user->save();
+        return redirect ('/users')->with('message', 'El usuario se ha agregado correctamente');
     }
 
     /**
@@ -45,7 +67,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('users.show',compact('user'));
     }
 
     /**

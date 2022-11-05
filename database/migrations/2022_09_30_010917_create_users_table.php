@@ -21,18 +21,20 @@ return new class extends Migration
             $table->foreign('estates_id')->references('id')->on('estates'); 
 
             $table->string('name');
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('email')->unique();
             $table->date('birthday');
-            $table->char('sex');
+            $table->string('sex');
             $table->string('location');
             $table->string('street');
-            $table->string('outdoor_number');
-            $table->string('indoor_number');
+            $table->integer('outdoor_number');
+            $table->integer('indoor_number');
             $table->integer('postal_code');
             $table->string('between_streets');
             $table->string('password');
-            $table->string('type_user');
+            
+            $table->timestamps();
+            
         });
     }
 

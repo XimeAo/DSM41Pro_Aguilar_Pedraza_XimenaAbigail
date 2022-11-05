@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\image;
+use App\Models\product;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -13,7 +15,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $images = image::all();
+        //return $groups;
+      return view('images.index', compact('images'));
     }
 
     /**
@@ -23,7 +27,8 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        $products=product::all();
+        return view('images.create',  compact('products'));
     }
 
     /**
@@ -34,7 +39,11 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = new image();
+        $image->image=$request->input('image');
+        $image->products_id=$request->input('products');
+        $image->save();
+        return redirect ('/images')->with('message', 'La imagen se ha agregado correctamente');
     }
 
     /**
@@ -45,7 +54,8 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        //
+        $image = image::find($id);
+        return view('images.show',compact('image'));
     }
 
     /**

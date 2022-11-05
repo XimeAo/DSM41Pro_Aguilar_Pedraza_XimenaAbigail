@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\estate;
+use App\Models\municipality;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +16,13 @@ class municipalityFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model=municipality::class;
     public function definition()
     {
         return [
-            //
+            
+            'estates_id'=>estate::all()->random()->id,
+            'municipality'=>fake()->sentence(),
         ];
     }
 }
