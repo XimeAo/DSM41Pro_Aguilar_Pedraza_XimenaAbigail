@@ -34,18 +34,20 @@
             </div>
             <div class="card-body">
                 
-            <form>
-                <input class="form-control" type="text" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
-                <label for="">Imagen</label>
-                <input class="form-control" type="text" value="" name="">
-                <select id="products" name="products" class="form-select">
-                    <option value="">Seleccionar</option>
-                    @foreach ($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->id }} -> {{ $product->product }} </option>
-                    @endforeach
-                </select>
+                <form action="{{url('images/' .$images->id)}}" method="POST" enctype="multipart/form-data">
+                    {!!csrf_field()!!}
+                    @method("PATCH")
+                <input class="form-control" type="text" value="{{$images->id}}" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
+                <label for=""> Imagen:</label> <br>
+                <input  type="file"  name="image" id="image" value="{{$images->image}}" accept="image/*"><br>
+                @error('image')
+                    <small class="text-danger">{{$message}}</small>
+                @enderror <br>
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                
+                
+                
+                    <button type="submit" class="btn btn-primary m-3">Guardar</button>
 
                 </div>
             </form>

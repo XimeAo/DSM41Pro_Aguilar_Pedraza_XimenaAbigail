@@ -37,34 +37,66 @@
             <form action="/products" method="POST">
                 {!!csrf_field()!!}
                 <label for=""> Producto:</label>
-                <input class="form-control" type="text"  name="product" id="product">
+                <input class="form-control" type="text"   name="product" id="product">
+                @error('product')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for=""> Descripción:</label>
                 <input class="form-control" type="text"  name="description" id="description">
+                @error('description')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for=""> Precio:</label>
                 <input class="form-control" type="num"  name="price" id="price">
+                @error('price')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for=""> Existencias:</label>
                 <input class="form-control" type="num"  name="stock" id="stock">
+                @error('stock')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for="">Marca</label><br>
-                <select id="marks" name="marks" class="form-select">
+                <select id="marks" name="marks" class="form-control">
                     <option value="">Seleccionar</option>
                     @foreach ($marks as $mark)
                         <option value="{{ $mark->id }}">{{ $mark->id }} -> {{ $mark->mark }} </option>
                     @endforeach
-                </select><br>
+                </select>
+                @error('marks')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for="">Modelo</label><br>
-                <select id="modelos" name="modelos" class="form-select">
+                <select id="modelos" name="modelos" class="form-control">
                     <option value="">Seleccionar</option>
                     @foreach ($modelos as $modelo)
                         <option value="{{ $modelo->id }}">{{ $modelo->id }} -> {{ $modelo->model }} </option>
                     @endforeach
-                </select><br>
+                </select>
+                @error('modelos')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for="">Categoria</label><br>
-                <select id="categories" name="categories" class="form-select">
+                <select id="categories" name="categories" class="form-control">
                     <option value="">Seleccionar</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->id }} -> {{ $category->category }} </option>
                     @endforeach
                 </select>
+                @error('categories')
+                    <small>{{$message}}</small>
+                @enderror <br>
+                <label for="">Imagen</label><br>
+                <select id="images" name="images" class="form-control">
+                    <option value="">Seleccionar</option>
+                    @foreach ($images as $image)
+                        <option value="{{ $image->id }}">{{ $image->id }} -> 
+                            <img src="{{ asset($image->image) }}" alt=""></option>
+                    @endforeach
+                </select>
+                @error('images')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 
                 
                     <button type="submit" class="btn btn-primary m-3">Guardar</button>

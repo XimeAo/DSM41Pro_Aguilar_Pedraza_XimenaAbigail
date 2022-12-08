@@ -34,27 +34,37 @@
             </div>
             <div class="card-body">
                 
-            <form>
+            <form action="{{url('sales/' .$sales->id)}}" method="POST">
+                {!!csrf_field()!!}
+                @method("PATCH")
                 <label for=""> Estado de la Venta:</label>
-                <input class="form-control" type="text" value="status" name="status" id="status">
+                <div class="form-group" type="text" aria-placeholder="{{$sales->status}}" value="{{$sales->status}}" name="status" id="status">
+                    <select  value="{{$sales->status}}" name="status" id="status"  class="form-control">
+                        <option value="Pendiente de pago">Pendiente de pago</option> 
+                        <option value="Pagado">Pagado</option> 
+                        <option value="Empacado">Empacado</option> 
+                        <option value="Enviado">Enviado</option> 
+                        <option value="Recibido">Recibido</option> 
+                    </select>
+                </div>
                 <label for=""> Número de Guía:</label>
-                <input class="form-control" type="num" value="guide_number" name="guide_number" id="guide_number">
+                <input class="form-control" type="num" value="{{$sales->guide_number}}" name="guide_number" id="guide_number">
                 <label for=""> Subtotal:</label>
-                <input class="form-control" type="num" value="subtotal" name="subtotal" id="subtotal">
+                <input class="form-control" type="num" value="{{$sales->subtotal}}" name="subtotal" id="subtotal">
                 <label for=""> Iva:</label>
-                <input class="form-control" type="num" value="iva" name="iva" id="iva">
+                <input class="form-control" type="num" value="{{$sales->iva}}" name="iva" id="iva">
                 <label for=""> Total:</label>
-                <input class="form-control" type="num" value="total" name="total" id="total">
+                <input class="form-control" type="num" value="{{$sales->total}}" name="total" id="total">
                 <label for="">Usuario</label>
-                <select id="users" name="users" class="form-select">
-                    <option value="">Seleccionar</option>
+                <select id="users_id" name="users_id" value="{{$sales->users?->name}}" class="form-control">
+                    <option value="{{$sales->users_id}}">{{$sales->users?->name}}</option>
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->id }} -> {{ $user->user }} </option>
+                        <option value="{{ $user->id }}">{{ $user->id }} -> {{ $user->name }} </option>
                     @endforeach
                 </select>
                 
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                    <button type="submit" class="btn btn-primary m-3">Guardar</button>
 
                 </div>
             </form>

@@ -22,7 +22,7 @@ class typeuserFactory extends Factory
         return [
             //'id'=>fake()->numberBetween($int1=1,$int2=100000),
             'type_user'=>fake()->sentence(),
-            'users_id'=>User::all()->random()->id,
+            
             
         ];
     }

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\CarController;
+
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EstateController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\ModelController;
@@ -28,25 +29,28 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });*/
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function(){
+    return redirect('/home');
 });
 
+Route::resource('home', HomeController::class);
 Route::resource('marks', MarkController::class);
 Route::resource('modelos', ModelController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
 Route::resource('estates', EstateController::class);
 Route::resource('municipalities', MunicipalityController::class);
-Route::resource('cars', CarController::class);
 Route::resource('users', UserController::class);
 Route::resource('sales', SaleController::class);
 Route::resource('images', ImageController::class);
 Route::resource('typeusers', TypeuserController::class);
 Route::resource('sales_details', SaleDetailController::class);
+Route::resource('images', ImageController::class);
 
 //Route::get('MarksG', [MarksController::class,'index'])->name('Mark');
 //Route::post('MarksP',[MarksController::class,'index'])->name('Mark');
 //Route::put('MarksPut', [MarksController::class,'index'])->name('Mark');
 //Route::delete('MarksD',[MarksController::class,'index'])->name('Mark');
+
+
 

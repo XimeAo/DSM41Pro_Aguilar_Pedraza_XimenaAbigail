@@ -16,9 +16,9 @@ class SaleDetailController extends Controller
      */
     public function index()
     {
-        $sales_details = sales_detail::all();
+        /*$sales_details = sales_detail::all();
         //return $groups;
-      return view('sales_details.index', compact('sales_details'));
+      return view('sales_details.index', compact('sales_details'));*/
     }
 
     /**
@@ -28,9 +28,9 @@ class SaleDetailController extends Controller
      */
     public function create()
     {
-        $sales=sale::all();
+        /*$sales=sale::all();
         $products=product::all();
-        return view('sales_details.create',  compact('sales','products'));
+        return view('sales_details.create',  compact('sales','products'));*/
     }
 
     /**
@@ -41,14 +41,14 @@ class SaleDetailController extends Controller
      */
     public function store(Request $request)
     {
-        $sales_detail = new sales_detail();
+        /*$sales_detail = new sales_detail();
         $sales_detail->quantity=$request->input('quantity');
         $sales_detail->price=$request->input('price');
         $sales_detail->sales_id=$request->input('sales');
         $sales_detail->products_id=$request->input('products');
        
         $sales_detail->save();
-        return redirect ('/sales_details')->with('message', 'El detalle de venta se ha registrado correctamente');
+        return redirect ('/sales_details')->with('message', 'El detalle de venta se ha registrado correctamente');*/
     }
 
     /**
@@ -59,8 +59,8 @@ class SaleDetailController extends Controller
      */
     public function show($id)
     {
-        $sales_detail = sales_detail::find($id);
-        return view('sales_details.show',compact('sales_detail'));
+       /* $sales_detail = sales_detail::find($id);
+        return view('sales_details.show',compact('sales_detail'));*/
     }
 
     /**

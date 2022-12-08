@@ -30,39 +30,43 @@
                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    <thead>
                                        <tr>
-                                        <th>Id</th>
-                                        <th>Nombre</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo Electrónico</th>
-                                        <th>Contraseña</th>
-                                        <th>Fecha de Nacimiento</th>
-                                        <th>Sexo</th>
-                                        <th>Localidad</th>
-                                        <th>Calle</th>
-                                        <th>Número Exterior</th>
-                                        <th>Número Interior</th>
-                                        <th>Código Postal</th>
-                                        <th>Entre Calles</th>
-                                        <th>Estados_id</th>
+                                            <th>Id</th>
+                                            <th>Nombre</th>
+                                            <th>Teléfono</th>
+                                            <th>Correo Electrónico</th>
+                                            <th>Contraseña</th>
+                                            <th>Fecha de Nacimiento</th>
+                                            <th>Sexo</th>
+                                            <th>Localidad</th>
+                                            <th>Calle</th>
+                                            <th>Número Exterior</th>
+                                            <th>Número Interior</th>
+                                            <th>Código Postal</th>
+                                            <th>Entre Calles</th>
+                                            <th>Estado_id</th>
+                                            <th>Municipio_id</th>
+                                            <th>Tipo de Usuario_id</th>
                                        </tr>
                                    </thead>
                                    
                                    <tbody>
                                        <tr>
-                                        <td>{{$user->id}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->phone}}</td>
-                                        <td>{{$user->password}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->birthday}}</td>
-                                        <td>{{$user->sex}}</td>
-                                        <td>{{$user->location}}</td>
-                                        <td>{{$user->street}}</td>
-                                        <td>{{$user->outdoor_number}}</td>
-                                        <td>{{$user->indoor_number}}</td>
-                                        <td>{{$user->postal_code}}</td>
-                                        <td>{{$user->between_streets}}</td>
-                                        <td>{{$user->estates_id}}</td>
+                                            <td>{{$user->id}}</td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->phone}}</td>
+                                            <td>{{$user->password}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>{{$user->birthday}}</td>
+                                            <td>{{$user->sex}}</td>
+                                            <td>{{$user->location}}</td>
+                                            <td>{{$user->street}}</td>
+                                            <td>{{$user->outdoor_number}}</td>
+                                            <td>{{$user->indoor_number}}</td>
+                                            <td>{{$user->postal_code}}</td>
+                                            <td>{{$user->between_streets}}</td>
+                                            <td>{{$user->estates_id}}</td>
+                                            <td>{{$user->municipalities_id}}</td>
+                                            <td>{{$user->typeusers_id}}</td>
                                           
                                        </tr>
                                        

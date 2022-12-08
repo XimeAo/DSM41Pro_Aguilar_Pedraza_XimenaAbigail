@@ -35,9 +35,10 @@
                                             <th>Descripción</th>
                                             <th>Precio</th>
                                             <th>Existencias</th>
-                                            <th>Marca_id</th>
-                                            <th>Modelo_id</th>
-                                            <th>Categoria_id</th>
+                                            <th>Marca</th>
+                                            <th>Modelo</th>
+                                            <th>Categoria</th>
+                                            <th>Imagen</th>
                                        </tr>
                                    </thead>
                                    
@@ -48,9 +49,13 @@
                                             <td>{{$product->description}}</td>
                                             <td>{{$product->price}}</td>
                                             <td>{{$product->stock}}</td>
-                                            <td>{{$product->marks_id}}</td>
-                                            <td>{{$product->modelos_id}}</td>
-                                            <td>{{$product->categories_id}}</td>
+                                            <td>{{$product->marks->mark}}</td>
+                                            <td>{{$product->modelos->model}}</td>
+                                            <td>{{$product->categories->category}}</td>
+                                            <td>
+                                                <img src="{{asset($product->images->image)}}" alt="" style="width: 150px">
+                                            </td>
+
                                        </tr>
                                        
                                    </tbody>

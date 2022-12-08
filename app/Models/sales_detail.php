@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class sales_detail extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $fillable = [
         'id',
         'quantity',
@@ -16,9 +17,9 @@ class sales_detail extends Model
         'products_id'
         ];
     public function sales(){
-        return $this->hasOne(sale::class,'id');
+        return $this->belongsTo(sale::class,'sales_id');
     }
     public function products(){
-        return $this->hasMany(product::class,'id');
+        return $this->belongsTo(product::class,'products_id');
     }
 }

@@ -34,36 +34,49 @@
             </div>
             <div class="card-body">
                 
-            <form>
-                <input class="form-control" type="text" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
+            <form action="{{url('products/' .$products->id)}}" method="POST">
+                {!!csrf_field()!!}
+                @method("PATCH")
+                <input class="form-control" type="text" value="{{$products->id}}" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
                 <label for="">Producto</label>
-                <input class="form-control" type="text" value="" name="">
+                <input class="form-control" type="text" value="{{$products->product}}" name="product" id="product">
                 <label for="">Descripción</label>
-                <input class="form-control" type="text" value="" name="">
+                <input class="form-control" type="text" value="{{$products->description}}"  name="description" id="product">
                 <label for="">Precio</label>
-                <input class="form-control" type="num" value="price" name="price" id="price">
+                <input class="form-control" type="num" value="{{$products->price}}" name="price" id="price">
                 <label for="">Existencias</label>
-                <input class="form-control" type="num" value="stock" name="stock" id="stock">
-                <label for=""> Año</label>
-                    <option value="">Seleccionar</option>
+                <input class="form-control" type="num" value="{{$products->stock}}" name="stock" id="stock">
+                <label for="">Marca</label><br>
+                <select id="marks_id" name="marks_id" class="form-control">
+                    <option value="{{$products->marks_id}}">{{$products->marks->mark}}</option>
                     @foreach ($marks as $mark)
                         <option value="{{ $mark->id }}">{{ $mark->id }} -> {{ $mark->mark }} </option>
                     @endforeach
-                </select>
-                <select id="modelos" name="modelos" class="form-select">
-                    <option value="">Seleccionar</option>
+                </select><br>
+                <label for="">Modelo</label><br>
+                <select id="modelos_id" name="modelos_id" class="form-control">
+                    <option value="{{$products->modelos_id}}">{{$products->modelos->model}}</option>
                     @foreach ($modelos as $modelo)
-                        <option value="{{ $modelo->id }}">{{ $modelo->id }} -> {{ $modelo->modelo }} </option>
+                        <option value="{{ $modelo->id }}">{{ $modelo->id }} -> {{ $modelo->model }} </option>
                     @endforeach
-                </select>
-                <select id="categories" name="categories" class="form-select">
-                    <option value="">Seleccionar</option>
+                </select><br>
+                <label for="">Categoria</label><br>
+                <select id="categories_id" name="categories_id" class="form-control">
+                    <option value="{{$products->categories_id}}">{{$products->categories->category}}</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->id }} -> {{ $category->category }} </option>
                     @endforeach
                 </select>
+                <label for="">Imagen</label><br>
+                <select id="images_id" name="images_id" class="form-control">
+                    <option value="{{$products->images_id}}">{{ asset($products->images->image) }}</option>
+                    @foreach ($images as $image)
+                        <option value="{{ $image->id }}">{{ $image->id }} ->{{ asset($image->image) }} </option>
+                    @endforeach
+                </select>
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                
+                    <button type="submit" class="btn btn-primary m-3" value="update">Guardar</button>
 
                 </div>
             </form>

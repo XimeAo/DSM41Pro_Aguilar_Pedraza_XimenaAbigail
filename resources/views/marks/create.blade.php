@@ -38,8 +38,11 @@
                 {!!csrf_field()!!}
                 <label for=""> Marca:</label>
                 <input class="form-control" type="text"  name="mark" id="mark">
+                @error('mark')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                    <button type="submit" class="btn btn-primary m-3">Guardar</button>
 
                 </div>
             </form>

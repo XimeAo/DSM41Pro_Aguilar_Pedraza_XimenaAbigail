@@ -17,8 +17,12 @@ return new class extends Migration
             $table->increments('id');
 
             $table->integer('estates_id')->unsigned(); 
-            
+            $table->integer('typeusers_id')->unsigned();
+            $table->integer('municipalities_id')->unsigned();  
+
             $table->foreign('estates_id')->references('id')->on('estates'); 
+            $table->foreign('typeusers_id')->references('id')->on('typeusers'); 
+            $table->foreign('municipalities_id')->references('id')->on('municipalities'); 
 
             $table->string('name');
             $table->string('phone');
@@ -28,12 +32,13 @@ return new class extends Migration
             $table->string('location');
             $table->string('street');
             $table->integer('outdoor_number');
-            $table->integer('indoor_number');
+            $table->integer('indoor_number')->nullable();
             $table->integer('postal_code');
             $table->string('between_streets');
             $table->string('password');
             
             $table->timestamps();
+            $table->softDeletes();
             
         });
     }

@@ -16,14 +16,16 @@ return new class extends Migration
         Schema::create('municipalities', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('estates_id')->unsigned(); 
+            /*$table->integer('estates_id')->unsigned(); 
 
-            $table->foreign('estates_id')->references('id')->on('estates'); 
+            $table->foreign('estates_id')->references('id')->on('estates'); */
+            
             
             $table->string('municipality');
 
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -38,6 +38,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            
+            'category'=>'required'
+        ]);
+        
         $category = new category;
         $category->category=$request->input('category');
         $category->save();
@@ -52,7 +57,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = category::find($id);
+        $category = category::findOrFail($id);
         return view('categories.show',compact('category'));
     }
 
@@ -64,7 +69,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = category::findOrFail($id);
+       
+
+        return view('categories.edit',compact('category'));
     }
 
     /**
@@ -76,9 +84,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = $request->all();
-        //category::create($category);
-        return $category;
+        $category=category::findOrFail($id);
+        $input=$request->all();
+        $category->update($input);
+        return redirect ('/categories')->with('message', 'La categoria se ha actualizado correctamente');
     }
 
     /**
@@ -89,6 +98,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = category::findOrFail($id);
+
+        $category->delete();
+        return redirect ('/categories');
     }
 }

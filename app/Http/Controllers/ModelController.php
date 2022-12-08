@@ -39,6 +39,11 @@ class ModelController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'modelo'=>'required',
+            'year'=>'required',
+            'marks'=>'required',
+        ]);
         $modelo = new modelo();
         $modelo->model=$request->input('modelo');
         $modelo->year=$request->input('year');
@@ -55,7 +60,7 @@ class ModelController extends Controller
      */
     public function show($id)
     {
-        $modelo = modelo::find($id);
+        $modelo = modelo::findOrFail($id);
         return view('modelos.show',compact('modelo'));
     }
 
@@ -67,7 +72,9 @@ class ModelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marks=mark::all();
+        $modelo=modelo::findOrFail($id);
+        return view('modelos.edit', compact('marks'))->with('modelos',$modelo);
     }
 
     /**
@@ -79,7 +86,10 @@ class ModelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $modelo=modelo::findOrFail($id);
+        $input=$request->all();
+        $modelo->update($input);
+        return redirect ('/modelos')->with('message', 'El modelo se ha actualizado correctamente');
     }
 
     /**
@@ -90,6 +100,9 @@ class ModelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $modelo = modelo::findOrFail($id);
+
+        $modelo->delete();
+        return redirect ('/modelos');
     }
 }

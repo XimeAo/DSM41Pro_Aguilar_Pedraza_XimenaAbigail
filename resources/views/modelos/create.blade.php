@@ -38,14 +38,24 @@
                 {!!csrf_field()!!}
                 <label for=""> Modelo:</label>
                 <input class="form-control" type="text"  name="modelo" id="modelo">
+                @error('modelo')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for=""> Año:</label>
                 <input class="form-control" type="num"  name="year" id="year">
-                <select id="marks" name="marks" class="form-select">
+                @error('year')
+                    <small>{{$message}}</small>
+                @enderror <br>
+                <label for=""> Marca:</label>
+                <select id="marks" name="marks" class="form-control">
                     <option value="">Seleccionar</option>
                     @foreach ($marks as $mark)
                         <option value="{{ $mark->id }}">{{ $mark->id }} -> {{ $mark->mark }} </option>
                     @endforeach
-                </select>
+                </select> 
+                @error('marks')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 
                     <button type="submit" class="btn btn-primary m-3">Guardar</button>
 

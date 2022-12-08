@@ -34,16 +34,15 @@
             </div>
             <div class="card-body">
                 
-            <form action="/images" method="POST">
+            <form action="/images" method="POST" enctype="multipart/form-data">
                 {!!csrf_field()!!}
-                <label for=""> Imagen:</label>
-                <input class="form-control" type="text"  name="image" id="image">
-                <select id="products" name="products" class="form-select">
-                    <option value="">Seleccionar</option>
-                    @foreach ($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->id }} -> {{ $product->product }} </option>
-                    @endforeach
-                </select>
+                <label for=""> Imagen:</label> <br>
+                <input  type="file"  name="image" id="image" accept="image/*"><br>
+                @error('image')
+                    <small class="text-danger">{{$message}}</small>
+                @enderror <br>
+                
+                  
                 
                     <button type="submit" class="btn btn-primary m-3">Guardar</button>
 

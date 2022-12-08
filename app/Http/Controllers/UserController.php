@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\estate;
+use App\Models\municipality;
+use App\Models\typeuser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -27,9 +29,11 @@ class UserController extends Controller
      */
     public function create()
     {
+        $typeusers=typeuser::all();
         $estates=estate::all();
+        $municipalities=municipality::all();
     
-        return view('users.create',  compact('estates'));
+        return view('users.create',  compact('estates','typeusers','municipalities'));
 
     }
 
@@ -41,6 +45,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'birthday'=>'required',
+            'sex'=>'required',
+            'location'=>'required',
+            'street'=>'required',
+            'outdoor_number'=>'required',
+            'postal_code'=>'required',
+            'between_streets'=>'required',
+            'estates'=>'required',
+            'municipalities'=>'required',
+            'typeusers'=>'required',
+        ]);
         $user = new User();
         $user->name=$request->input('name');
         $user->phone=$request->input('phone');
@@ -55,6 +75,8 @@ class UserController extends Controller
         $user->postal_code=$request->input('postal_code');
         $user->between_streets=$request->input('between_streets');
         $user->estates_id=$request->input('estates');
+        $user->municipalities_id=$request->input('municipalities');
+        $user->typeusers_id=$request->input('typeusers');
         $user->save();
         return redirect ('/users')->with('message', 'El usuario se ha agregado correctamente');
     }
@@ -67,7 +89,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('users.show',compact('user'));
     }
 
@@ -79,7 +101,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $typeusers=typeuser::all();
+        $estates=estate::all();
+        $municipalities=municipality::all();
+        $user=User::findOrFail($id);
+        return view('users.edit', compact('estates','typeusers','municipalities'))->with('users',$user);
     }
 
     /**
@@ -91,7 +117,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user=User::findOrFail($id);
+        $input=$request->all();
+        $user->update($input);
+        return redirect ('/users')->with('message', 'El usuario se ha actualizado correctamente');
     }
 
     /**
@@ -102,6 +131,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->delete();
+        return redirect ('/users');
     }
 }

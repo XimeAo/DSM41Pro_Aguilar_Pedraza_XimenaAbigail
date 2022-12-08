@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use App\Models\estate;
+use App\Models\typeuser;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -37,6 +38,7 @@ class   UserFactory extends Factory
             'between_streets' =>fake()->sentence(),
             'password' =>fake()->sentence(),
             'estates_id'=>estate::all()->random()->id,
+            'typeusers_id'=>typeuser::all()->random()->id,
 
             
         ];

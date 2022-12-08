@@ -32,7 +32,7 @@
                                        <tr>
                                             <th>Id</th>
                                             <th>Municipio</th>
-                                            <th>Estado_id</th>
+                                            
                                        </tr>
                                    </thead>
                                    
@@ -40,7 +40,7 @@
                                        <tr>
                                             <td>{{$municipality->id}}</td>
                                             <td>{{$municipality->municipality}}</td>
-                                            <td>{{$municipality->estates_id}}</td>
+                                            <
                                        </tr>
                                        
                                    </tbody>

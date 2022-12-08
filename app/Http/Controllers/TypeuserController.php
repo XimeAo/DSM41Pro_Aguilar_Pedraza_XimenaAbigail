@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\typeuser;
-use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class TypeuserController extends Controller
@@ -27,8 +27,8 @@ class TypeuserController extends Controller
      */
     public function create()
     {
-        $users=User::all();
-        return view('typeusers.create',  compact('users'));
+        
+        return view('typeusers.create');
     }
 
     /**
@@ -39,9 +39,11 @@ class TypeuserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'type_user'=>'required',
+        ]);
         $typeuser = new typeuser();
         $typeuser->type_user=$request->input('type_user');
-        $typeuser->users_id=$request->input('users');
         $typeuser->save();
         return redirect ('/typeusers')->with('message', 'El Tipo de usuario se ha agregado correctamente');
     }
@@ -54,7 +56,7 @@ class TypeuserController extends Controller
      */
     public function show($id)
     {
-        $typeuser = typeuser::find($id);
+        $typeuser = typeuser::findOrFail($id);
         return view('typeusers.show',compact('typeuser'));
     }
 
@@ -66,7 +68,11 @@ class TypeuserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $typeuser = typeuser::findOrFail($id);
+       
+
+        return view('typeusers.edit',compact('typeuser'));
     }
 
     /**
@@ -78,7 +84,10 @@ class TypeuserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $typeuser= typeuser::findOrFail($id);
+        $input=$request->all();
+        $typeuser->update($input);
+        return redirect ('/typeusers')->with('flash_message', 'El Tipo de usuario se ha actualizado correctamente');
     }
 
     /**
@@ -89,6 +98,10 @@ class TypeuserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $typeusers = typeuser::findOrFail($id);
+        
+        $typeusers->delete();
+
+        return redirect ('/typeusers');
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('marks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mark');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

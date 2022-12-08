@@ -33,7 +33,7 @@
                                         <th>Id</th>
                                         <th>Modelo</th>
                                         <th>Año</th>
-                                        <th>Marca_id</th>
+                                        <th>Marca</th>
                                        </tr>
                                    </thead>
                                    
@@ -42,7 +42,7 @@
                                         <td>{{$modelo->id}}</td>
                                         <td>{{$modelo->model}}</td>
                                         <td>{{$modelo->year}}</td>
-                                        <td>{{$modelo->marks_id}}</td>
+                                        <td>{{$modelo->marks->mark}}</td>
                                        </tr>
                                        
                                    </tbody>

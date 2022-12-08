@@ -34,12 +34,14 @@
             </div>
             <div class="card-body">
                 
-            <form>
-                <input class="form-control" type="text" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
+                <form action="{{url('categories/' .$category->id)}}" method="POST">
+                    {!!csrf_field()!!}
+                    @method("PATCH")
+                <input class="form-control" type="text" value="{{$category->id}}" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
                 <label for=""> Categoria</label>
-                <input class="form-control" type="text" value="" name="">
+                <input class="form-control" type="text" value="{{$category->category}}" name="category" id="category">
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                    <button type="submit" class="btn btn-primary m-3">Guardar</button>
 
                 </div>
             </form>

@@ -34,18 +34,16 @@
             </div>
             <div class="card-body">
                 
-            <form>
-                <input class="form-control" type="text" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
-                <label for=""> Tipo de Usuario:</label>
-                <input class="form-control" type="text" value="type_user" name="type_user" id="type_user">
-                <select id="users" name="users" class="form-select">
-                    <option value="">Seleccionar</option>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->id }} -> {{ $user->name }} </option>
-                    @endforeach
-                </select>
+            <form action="{{url('typeusers/' .$typeuser->id)}}" method="POST">
+               
+                {!!csrf_field()!!}
+             @method("PATCH")
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                <label for=""> Tipo de Usuario:</label>
+                <input class="form-control" type="text" value="{{$typeuser->type_user}}" name="type_user" id="type_user">
+                
+                
+                    <button type="submit" class="btn btn-primary m-3">Guardar</button>
 
                 </div>
             </form>

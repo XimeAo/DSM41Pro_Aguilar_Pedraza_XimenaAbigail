@@ -37,6 +37,9 @@ class MarkController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'mark'=>'required'
+        ]);
         $mark = new mark;
         $mark->mark=$request->input('mark');
         $mark->save();
@@ -51,7 +54,7 @@ class MarkController extends Controller
      */
     public function show($id)
     {
-        $mark = mark::find($id);
+        $mark = mark::findOrFail($id);
         return view('marks.show',compact('mark'));
     }
 
@@ -63,7 +66,10 @@ class MarkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mark = mark::findOrFail($id);
+       
+
+        return view('marks.edit',compact('mark'));
     }
 
     /**
@@ -75,7 +81,10 @@ class MarkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mark=mark::findOrFail($id);
+        $input=$request->all();
+        $mark->update($input);
+        return redirect ('/marks')->with('message', 'La marca se ha actualizado correctamente');
     }
 
     /**
@@ -86,6 +95,8 @@ class MarkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $marks = mark::findOrFail($id);
+        $marks->delete();
+        return redirect('/marks');
     }
 }

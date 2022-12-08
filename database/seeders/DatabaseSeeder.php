@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         estate::factory(10)->create();
-        User::factory(10)->create();
+        
 
         mark::factory(10)->create();
         modelo::factory(10)->create();
@@ -37,10 +37,11 @@ class DatabaseSeeder extends Seeder
         product::factory(10)->create();
         
         municipality::factory(10)->create();
-        sale::factory(10)->create();
-        sales_detail::factory(10)->create();
         image::factory(10)->create();
         typeuser::factory(10)->create();
+        User::factory(10)->create();
+        sale::factory(10)->create();
+        sales_detail::factory(10)->create();
 
     }
 }

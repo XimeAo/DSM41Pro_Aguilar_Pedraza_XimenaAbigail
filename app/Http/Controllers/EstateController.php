@@ -26,7 +26,7 @@ class EstateController extends Controller
      */
     public function create()
     {
-        return view('estates.create');
+        //return view('estates.create');
     }
 
     /**
@@ -37,10 +37,10 @@ class EstateController extends Controller
      */
     public function store(Request $request)
     {
-        $estate = new estate;
+        /*$estate = new estate;
         $estate->estate=$request->input('estate');
         $estate->save();
-        return redirect ('/estates')->with('message', 'El estado se ha agrgado correctamente');
+        return redirect ('/estates')->with('message', 'El estado se ha agrgado correctamente');*/
     }
 
     /**
@@ -51,7 +51,7 @@ class EstateController extends Controller
      */
     public function show($id)
     {
-        $estate = estate::find($id);
+        $estate = estate::findOrFail($id);
         return view('estates.show',compact('estate'));
     }
 

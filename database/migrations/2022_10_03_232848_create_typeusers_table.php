@@ -14,11 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('typeusers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('users_id')->unsigned(); 
-            $table->foreign('users_id')->references('id')->on('users'); 
+            $table->increments('id'); 
             $table->string('type_user');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

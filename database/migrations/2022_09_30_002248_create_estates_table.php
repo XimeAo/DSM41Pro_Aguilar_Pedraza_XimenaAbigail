@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('estate');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

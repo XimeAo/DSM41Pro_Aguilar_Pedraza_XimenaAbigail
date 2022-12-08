@@ -32,15 +32,17 @@
                                        <tr>
                                         <th>Id</th>
                                         <th>Imagen</th>
-                                        <th>Producto_id</th>
+                                        
                                        </tr>
                                    </thead>
                                    
                                    <tbody>
                                        <tr>
                                         <td>{{$image->id}}</td>
-                                        <td>{{$image->image}}</td>
-                                        <td>{{$image->products_id}}</td>
+                                        <td>
+                                            <img src="{{asset($image->image)}}" alt="" style="width: 150px">
+                                        </td>
+                                        
                                             
                                        </tr>
                                        

@@ -38,12 +38,9 @@
                 {!!csrf_field()!!}
                 <label for=""> Tipo de Usuario:</label>
                 <input class="form-control" type="text"  name="type_user" id="type_user">
-                <select id="users" name="users" class="form-select">
-                    <option value="">Seleccionar</option>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->id }} -> {{ $user->name }} </option>
-                    @endforeach
-                </select>
+                @error('type_user')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 
                     <button type="submit" class="btn btn-primary m-3">Guardar</button>
 

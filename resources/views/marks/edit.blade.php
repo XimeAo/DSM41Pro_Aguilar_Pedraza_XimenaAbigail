@@ -34,10 +34,12 @@
             </div>
             <div class="card-body">
                 
-            <form>
-                <input class="form-control" type="text" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
+            <form action="{{url('marks/' .$mark->id)}}" method="POST">
+            {!!csrf_field()!!}
+            @method("PATCH")
+                <input class="form-control" type="text" value="{{$mark->id}}" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
                 <label for=""> Marca</label>
-                <input class="form-control" type="text" value="" name="">
+                <input class="form-control" type="text" value="{{$mark->mark}}" name="mark" id="mark">
                 
                     <button type="submit" class="btn btn-primary m-3">Guadar</button>
 
@@ -59,4 +61,3 @@
 </div>
 <!-- End of Main Content -->
 
-@include('layouts.footer')

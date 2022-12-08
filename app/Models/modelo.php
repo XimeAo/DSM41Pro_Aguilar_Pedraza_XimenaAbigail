@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class modelo extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $fillable = [
         'id',
         'year',
@@ -16,9 +17,11 @@ class modelo extends Model
         ];
 
     public function marks(){
-        return $this->belongsTo(mark::class,'id');
+        return $this->belongsTo(mark::class,'marks_id')->withDefault([
+            'mark'=> 'No existe ninguna marca relacionada.'
+        ]);
     }
     public function products(){
-        return $this->belongsTo(product::class,'id');
+        return $this->hasMany(product::class,'modelos_id','id');
     }
 }

@@ -37,9 +37,12 @@
             <form action="/categories" method="POST">
                 {!!csrf_field()!!}
                 <label for=""> Categoria:</label>
-                <input class="form-control" type="text"  name="category" id="category">
+                <input class="form-control" type="text"  name="category" id="category"> 
+                @error('category')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                    <button type="submit" class="btn btn-primary m-3">Guardar</button>
 
                 </div>
             </form>

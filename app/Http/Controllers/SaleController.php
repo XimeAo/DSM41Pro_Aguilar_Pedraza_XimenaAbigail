@@ -39,6 +39,14 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'users'=>'required',
+            'subtotal'=>'required',
+            'iva'=>'required',
+            'total'=>'required',
+            'status'=>'required',
+            'guide_number'=>'required',
+        ]);
         $sale = new sale();
         $sale->users_id=$request->input('users');
         $sale->subtotal=$request->input('subtotal');
@@ -58,7 +66,7 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        $sale = sale::find($id);
+        $sale = sale::findOrFail($id);
         return view('sales.show',compact('sale'));
     }
 
@@ -70,7 +78,9 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users=User::all();
+        $sale=sale::findOrFail($id);
+        return view('sales.edit', compact('users'))->with('sales',$sale);
     }
 
     /**
@@ -82,7 +92,10 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sale=sale::findOrFail($id);
+        $input=$request->all();
+        $sale->update($input);
+        return redirect ('/sales')->with('message', 'La venta se ha actualizado correctamente');
     }
 
     /**
@@ -93,6 +106,9 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sale = sale::findOrFail($id);
+
+        $sale->delete();
+        return redirect ('/sales');
     }
 }

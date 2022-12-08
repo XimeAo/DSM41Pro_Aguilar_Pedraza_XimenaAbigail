@@ -34,20 +34,23 @@
             </div>
             <div class="card-body">
                 
-            <form>
-                <input class="form-control" type="text" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
+            <form action="{{url('modelos/' .$modelos->id)}}" method="POST">
+                {!!csrf_field()!!}
+                 @method("PATCH")
+                <input class="form-control" type="text" value="{{$modelos->id}}" placeholder="ID Asignado" aria-label="Disabled input example" disabled>
                 <label for="">Modelo</label>
-                <input class="form-control" type="text" value="" name="">
+                <input class="form-control" type="text" value="{{$modelos->model}}" name="modelo" id="modelo">
                 <label for=""> Año</label>
-                <input class="form-control" type="num" value="year" name="year" id="year">
-                <select id="marks" name="marks" class="form-select">
-                    <option value="">Seleccionar</option>
+                <input class="form-control" type="num" value="{{$modelos->year}}" name="year" id="year">
+                <label for="">Marca</label>
+                <select id="marks_id" name="marks_id" class="form-control">
+                    <option value="{{$modelos->marks_id}}">{{$modelos->marks->mark}}</option>
                     @foreach ($marks as $mark)
                         <option value="{{ $mark->id }}">{{ $mark->id }} -> {{ $mark->mark }} </option>
                     @endforeach
                 </select>
                 
-                    <button type="submit" class="btn btn-primary m-3">Guadar</button>
+                    <button type="submit" class="btn btn-primary m-3">Guardar</button>
 
                 </div>
             </form>

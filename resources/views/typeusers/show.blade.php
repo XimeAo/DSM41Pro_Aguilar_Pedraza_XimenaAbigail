@@ -32,7 +32,7 @@
                                        <tr>
                                         <th>Id</th>
                                         <th>Tipo de usuario</th>
-                                        <th>Usuario_id</th>
+                                        
                                         
                                        </tr>
                                    </thead>
@@ -41,7 +41,7 @@
                                        <tr>
                                             <td>{{$typeuser->id}}</td>
                                             <td>{{$typeuser->type_user}}</td>
-                                            <td>{{$typeuser->users_id}}</td>
+                                            
                                           
                                        </tr>
                                        

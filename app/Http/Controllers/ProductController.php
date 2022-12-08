@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\category;
+use App\Models\image;
 use App\Models\mark;
 use App\Models\modelo;
 use App\Models\product;
@@ -32,7 +33,8 @@ class ProductController extends Controller
         $marks=mark::all();
         $modelos=modelo::all();
         $categories=category::all();
-        return view('products.create',  compact('marks','modelos','categories'));
+        $images=image::all();
+        return view('products.create',  compact('marks','modelos','categories','images'));
 
     }
 
@@ -44,6 +46,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'product'=>'required',
+            'description'=>'required',
+            'price'=>'required',
+            'stock'=>'required',
+            'marks'=>'required',
+            'modelos'=>'required',
+            'categories'=>'required',
+            'images'=>'required'
+        ]);
+
         $product = new product();
         $product->product=$request->input('product');
         $product->description=$request->input('description');
@@ -52,6 +65,7 @@ class ProductController extends Controller
         $product->marks_id=$request->input('marks');
         $product->modelos_id=$request->input('modelos');
         $product->categories_id=$request->input('categories');
+        $product->images_id=$request->input('images');
         $product->save();
         return redirect ('/products')->with('message', 'El producto se ha agregado correctamente');
     }
@@ -64,7 +78,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = product::find($id);
+        $product = product::findOrFail($id);
         return view('products.show',compact('product'));
     }
 
@@ -76,7 +90,12 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $modelos=modelo::all();
+        $categories=category::all();
+        $marks=mark::all();
+        $images=image::all();
+        $product=product::findOrFail($id);
+        return view('products.edit', compact('modelos','categories','marks'))->with('products',$product);
     }
 
     /**
@@ -88,7 +107,10 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product=product::findOrFail($id);
+        $input=$request->all();
+        $product->update($input);
+        return redirect ('/products')->with('message', 'El producto se ha actualizado correctamente');
     }
 
     /**
@@ -99,6 +121,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = product::findOrFail($id);
+
+        $product->delete();
+        return redirect ('/products');
     }
 }

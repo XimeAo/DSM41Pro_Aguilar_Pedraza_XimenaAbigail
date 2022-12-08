@@ -38,29 +38,48 @@
                 {!!csrf_field()!!}
                 <label for=""> Estado de la Venta:</label>
                 <div class="form-group" type="text" name="status" id="status">
-                    <select name="status" id="status">
+                    <select name="status" id="status" class="form-control">
                         <option value="Pendiente de pago">Pendiente de pago</option> 
                         <option value="Pagado">Pagado</option> 
                         <option value="Empacado">Empacado</option> 
                         <option value="Enviado">Enviado</option> 
                         <option value="Recibido">Recibido</option> 
                     </select>
+                    @error('status')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 </div>
+                
                 <label for=""> Número de Guía:</label>
                 <input class="form-control" type="num"  name="guide_number" id="guide_number">
+                @error('guide_number')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for=""> Subtotal:</label>
                 <input class="form-control" type="num" name="subtotal" id="subtotal">
+                @error('subtotal')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for=""> Iva:</label>
                 <input class="form-control" type="num"  name="iva" id="iva">
+                @error('iva')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for=""> Total:</label>
                 <input class="form-control" type="num"  name="total" id="total">
+                @error('total')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 <label for="">Usuario</label>
-                <select id="users" name="users" class="form-select">
+                <select id="users" name="users" class="form-control">
                     <option value="">Seleccionar</option>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}">{{ $user->id }} -> {{ $user->name }} </option>
                     @endforeach
                 </select>
+                @error('users')
+                    <small>{{$message}}</small>
+                @enderror <br>
                 
                 
                 
